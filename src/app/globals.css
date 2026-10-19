@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* Palet diambil dari lambang Bareskrim Polri: merah, hitam, kuning emas, biru. Hanya tema terang. */
+:root {
+  --bg: #f5f4f1;
+  --surface: #ffffff;
+  --panel: #faf9f7;
+  --sunk: #eceae5;
+  --ink: #1b1816;
+  --muted: #66615b;
+  --line: #dcd9d3;
+  --brand: #c4201a;
+  --brand-ink: #a01712;
+  --brand-soft: #fceceb;
+  --gold: #f2b800;
+  --gold-soft: #fdf3cf;
+  --blue: #0a7dc0;
+  --blue-soft: #e3f1fa;
+  --ok: #1c7a3f;
+  --ok-soft: #e1f2e7;
+  --warn: #9a5b00;
+  --warn-soft: #fbecd2;
+  --crit: #b3261e;
+  --gelar: #c2570c;
+  --sid: #5b3fa8;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-blue: var(--blue);
+  --color-blue-soft: var(--blue-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-crit: var(--crit);
+  --color-gelar: var(--gelar);
+  --color-sid: var(--sid);
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.01em; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  dialog::backdrop { background: rgb(20 15 12 / 0.55); }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1120px] px-5; }
+  .card { @apply min-w-0 rounded-lg border border-line bg-surface; }
+  .card-h { @apply flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-3 text-[15px] font-semibold; }
+  .card-b { @apply px-4 py-4; }
+  .btn { @apply inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md border border-transparent px-4 text-sm font-semibold no-underline transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn svg { @apply size-[17px] flex-none; }
+  .btn-pri { @apply bg-brand text-white hover:bg-brand-ink; }
+  .btn-sec { @apply border-line bg-surface text-ink hover:bg-sunk; }
+  .btn-sm { @apply min-h-8 px-3 text-[13px]; }
+  .field { @apply min-h-[42px] w-full rounded-md border border-line bg-surface px-3 py-2 text-ink placeholder:text-muted/70 aria-[invalid=true]:border-crit; font: inherit; }
+  .field:focus { @apply border-ink outline-none ring-2 ring-blue/30; }
+  textarea.field { @apply min-h-[110px] resize-y; }
+  .lbl { @apply mb-1.5 block text-[13.5px] font-medium; }
+  .hint { @apply mt-1.5 text-[12.5px] leading-snug text-muted; }
+  .err { @apply mt-1.5 text-[12.5px] font-medium text-crit; }
+  .h1 { @apply m-0 text-[clamp(26px,3.6vw,38px)] font-bold leading-[1.15]; }
+  .h2 { @apply m-0 text-xl font-bold leading-snug; }
+  .kv { @apply m-0 grid grid-cols-[minmax(104px,34%)_1fr] gap-x-4 gap-y-2.5; }
+  .kv dt { @apply text-sm text-muted; }
+  .kv dd { @apply m-0 min-w-0 text-[14.5px] [overflow-wrap:anywhere]; }
+  .th { @apply whitespace-nowrap border-b border-line px-3 py-2.5 text-left text-[12.5px] font-semibold text-muted; }
+}
